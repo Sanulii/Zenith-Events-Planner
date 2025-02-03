@@ -79,9 +79,13 @@ public class Main {
 
     }
 
-    public static int optionalServices() {
+    public static void optionalServices() {
 
         String choice;
+        int i = 0, x = 0;
+        int[] optionalServices = {0, 0, 0, 0};
+
+        String[] optionalServiceNames = {"Catering", "Decoration", "Live Entertainment", "Photography"};
 
         Scanner s = new Scanner(System.in);
 
@@ -93,32 +97,23 @@ public class Main {
 
             System.out.println("\n\t\t\t\tSelect Extra Services");
             System.out.println("================================================================");
-            System.out.print("Please select (Y\\N)");
+            System.out.print("Please select (Y\\N)\n");
 
-            System.out.print("\t1 - Catering\t\t- ");
-            choice = s.nextLine();
-            optionalServices[0] = choice.equalsIgnoreCase("Y")? 1: 0;
+            for (i = 0; i < 4; i++){
 
-            System.out.print("\t2 - Decoration\t\t- ");
-            choice = s.nextLine();
-            optionalServices[1] = choice.equalsIgnoreCase("Y")? 1: 0;
+                System.out.print(( i + 1 ) + " - " + optionalServiceNames[i] + "\t: ");
+                choice = s.nextLine();
 
-            System.out.print("\t3 - Live Entertainment\t\t- ");
-            choice = s.nextLine();
-            optionalServices[2] = choice.equalsIgnoreCase("Y")? 1: 0;
+                optionalServices[i] = choice.equalsIgnoreCase("Y")? 1: 0;
 
-            System.out.print("\t4 - Photography\t\t- ");
-            choice = s.nextLine();
-            optionalServices[3] = choice.equalsIgnoreCase("Y")? 1: 0;
+            }
 
         }
         else {
 
-            System.out.println("Moving on....\n");
+            System.out.println("Moving on.....\n");
 
         }
-
-
 
     }
 
@@ -127,6 +122,7 @@ public class Main {
         eventType = getEventType();
         eventDuration = getEventDuration();
         guestNumber = getGuestNumber();
+        optionalServices();
     }
 
     public static void main(String[] args) {
