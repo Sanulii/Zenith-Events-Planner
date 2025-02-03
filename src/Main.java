@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static String clientName;
-    public static int eventType;
+    public static int eventType, eventDuration, guestNumber;
 
 
     public static void welcomeMessage() {
@@ -53,17 +53,45 @@ public class Main {
         return eventType;
     }
 
+    public static int getEventDuration() {
+        int eventDuration;
+        Scanner s = new Scanner(System.in);
+
+        System.out.print("Enter the duration in Hours : ");
+        eventDuration = s.nextInt();
+        System.out.println(" ");
+
+        return eventDuration;
+
+    }
+
+    public static int getGuestNumber() {
+        int guestNumber;
+        Scanner s = new Scanner(System.in);
+
+        System.out.print("Enter the number of guests : ");
+        guestNumber = s.nextInt();
+
+        return guestNumber;
+
+    }
+
     public static void getInput() {
         clientName = getClientName();
         eventType = getEventType();
+        eventDuration = getEventDuration();
+        guestNumber = getGuestNumber();
     }
 
     public static void main(String[] args) {
 
         welcomeMessage();
         getInput();
+
         System.out.println(clientName);
         System.out.println(eventType);
+        System.out.println(eventDuration);
+        System.out.println(guestNumber);
 
     }
 }
