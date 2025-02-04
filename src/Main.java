@@ -1,8 +1,8 @@
 
 /*
- * Developer name: Indika
- * last modified date: 2025-01-26
- * purpose:
+ * Developer name: Sanuli
+ * last modified date: 2025-02-04
+ * purpose: Zenith Event Planner App
  */
 import java.util.Scanner;
 
@@ -125,35 +125,34 @@ public class Main {
 
         System.out.println("\n================================================================");
         System.out.println("\n**********************  Booking Summary  ***********************");
-
         System.out.println("\nClient Name\t\t: " + clientName);
-        System.out.println("__________________________________________________________________");
-        System.out.println("Item Cost List");
-
         System.out.println("Event Type\t\t: " + eventTypes[eventType-1]);
-        System.out.println("Event Base Cost\t\t: " );
+        System.out.println("Event Duration\t: " + eventDuration);
+        System.out.println("Guests Expected\t: " + guestNumber);
 
-        System.out.println("Event Type\t\t: " + eventDuration);
-        System.out.println("Event Type\t\t: " + guestNumber);
+
+        //Optional services selected code - pending to be added
 
     }
 
     public static void calculations(){
 
-        int optionalServicesSum = 0, i;
+        int optionalServicesSum, i;
         int[] eventTypeBasePricing = {500, 300, 400, 600};
         int[] eventTypeAddPricing = {150, 100, 120, 200};
         int[] optionalServicePricing = {25, 200, 500, 300};
 
         baseCost = eventTypeBasePricing[eventType-1] + (eventTypeAddPricing[eventType-1] * (eventDuration - 1));
 
-        for (i = 0; i < 4; i++){
+        optionalServicesSum = optionalServices[0] * optionalServicePricing[0] * guestNumber;
+
+        for (i = 1; i < 4; i++){
 
             optionalServicesSum += (optionalServicePricing[i] * optionalServices[i]);
 
         }
 
-        optionalServiceCost = optionalServicesSum * guestNumber;
+        optionalServiceCost = optionalServicesSum;
 
         totalCost = baseCost + optionalServiceCost;
 
@@ -167,21 +166,27 @@ public class Main {
         optionalServices = optionalServices();
     }
 
+    public static void printPricing() {
+
+        System.out.println("\n================================================================");
+        System.out.println("\n**********************  Pricing Summary  ***********************");
+        System.out.println("__________________________________________________________________");
+        System.out.println("Item Cost List");
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("Base Cost\t\t\t\t: " + baseCost);
+        System.out.println("Optional Services Cost\t: " + optionalServiceCost);
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("Total Cost\t\t\t\t: " + totalCost);
+
+    }
+
     public static void main(String[] args) {
 
         welcomeMessage();
         getInput();
         printInitial();
-
-        System.out.println("\n--------------------------------Test Area--------------------------------");
-
         calculations();
-
-        System.out.println(baseCost);
-        System.out.println(optionalServiceCost);
-        System.out.println(totalCost);
-
-
+        printPricing();
 
     }
 }
